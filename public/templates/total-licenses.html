@@ -1,0 +1,110 @@
+
+<div class="row no-m-t no-m-b">
+	<div class="col s12 m12 l6">
+		<div class="card stats-card">
+			<div class="card-content totals-card">
+				<span class="card-title">{{ title }}</span>
+				<div class="row no-m-t no-m-b">
+					<div class="col s12 m12 l4">
+						<span class="secondary-title license-card-title">&nbsp;</span>
+						<div class="stats-counter"><small>ViWO Original</small></div>
+						<div class="stats-counter"><small>ViWO Premium</small></div>
+						<hr>
+						<div class="stats-counter"><small>Total</small></div>
+					</div>
+					<div class="col s12 m12 l4">
+						<span class="secondary-title license-card-title">Subscriptions</span>
+						<div class="stats-counter"><span class="counter">{{ originalSubs }}</span></div>
+						<div class="stats-counter"><span class="counter">{{ premiumSubs }}</span></div>
+						<hr>
+						<div class="stats-counter"><span class="counter">{{ totalSubs }}</span></div>
+					</div>
+					<div class="col s12 m12 l4">
+						<span class="secondary-title license-card-title">License</span>
+						<div class="stats-counter"><span class="counter">{{ originalLicenses }}</span></div>
+						<div class="stats-counter"><span class="counter">{{ premiumLicenses }}</span></div>
+						<hr>
+						<div class="stats-counter"><span class="counter">{{ totalLic }}</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l6">
+		<div class="card stats-card">
+			<div class="card-content totals-card">
+				<!--<span class="card-title" ng-bind-html="date_range"></span>-->
+				<form ng-submit="submit()">
+					<div class="row" style="margin-bottom: 0px">
+						<div id="endId" style="display: inline; float:left">
+							<div class="date-picker">
+								<span class="counter">As of:</span>
+								<input type="date" max="{{formatedCurrentDate}}" ng-model="asOfDate" ng-change="submit()"/>
+							</div>
+						</div>
+					</div>
+					<!--<button class="btn waves-effect waves-light right" type="submit" name="action">-->
+						<!--Apply<i class="material-icons right">send</i>-->
+					<!--</button>-->
+					<div class="row" style="margin-bottom: 0px">
+						<div class="date-error" style="text-align: left" ng-hide="errormsg == ''">{{ errormsg }}</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="page-loading" ng-show = showloadingicon>
+		<img style="display:block; margin-left: 50%" src="/public/assets/images/200w.webp">
+	</div>
+
+
+	<div class="row no-m-t no-m-b">
+		<div class="col s12 m12 l12">
+			<div class="card invoices-card">
+				<div class="card-content">
+					<div class="row" ng-repeat="plans in totalData">
+						<table class="responsive-table bordered col l12">
+							<div class="secondary-title"></div>
+							<thead>
+								<tr>
+									<th class="secondary-title" style="width: 160px">{{ plans.plan }}</th>
+									<th></th>
+									<th class="numeric" colspan="2">ViWO Original</th>
+									<th class="numeric" colspan="2">ViWO Premium</th>
+								</tr>
+								<tr>
+									<th></th>
+									<th>Product</th>
+									<th class="numeric">Subscriptions</th>
+									<th class="numeric">Licenses</th>
+									<th class="numeric">Subscriptions</th>
+									<th class="numeric">Licenses</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="product in plans">
+									<td><div class="ball" style="{{ product.color }}"></div></td>
+									<td><a href="{{product.anchor}}">{{ product.skuName }}</a></td>
+									<td class="numeric">{{ product.subscriptions1 }}</td>
+									<td class="numeric">{{ product.licenses1 }}</td>
+									<td class="numeric">{{ product.subscriptions2 }}</td>
+									<td class="numeric">{{ product.licenses2 }}</td>
+								</tr>
+								<tr>
+									<th></th>
+									<th>Total</th>
+									<td class="numeric"><b>{{ plans.total.totSubs1 }}</b></td>
+									<td class="numeric"><b>{{ plans.total.totLicns1 }}</b></td>
+									<td class="numeric"><b>{{ plans.total.totSubs2 }}</b></td>
+									<td class="numeric"><b>{{ plans.total.totLicns2 }}</b></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

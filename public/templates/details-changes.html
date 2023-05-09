@@ -1,0 +1,259 @@
+
+<div class="row no-m-t no-m-b" ng-if="totalSum.new">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'new '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">License Changes</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.new">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + from_date + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(license_data.licenses) }}">{{ valueWithPrefix(license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(totalSum.new) }}" style="font-weight: bold;">{{ valueWithPrefix(totalSum.new) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b" ng-if="totalSum.increment">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'increment '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">License Changes</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.increment">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + from_date + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(license_data.licenses) }}">{{ valueWithPrefix(license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(totalSum.increment) }}" style="font-weight: bold;">{{ valueWithPrefix(totalSum.increment) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b" ng-if="totalData.reactivate">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'reactivate '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">License Changes</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.reactivate">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + from_date + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person + '&plan=' + plan}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(license_data.licenses) }}">{{ valueWithPrefix(license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(totalSum.reactivate) }}" style="font-weight: bold;">{{ valueWithPrefix(totalSum.reactivate) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b" ng-if="totalData.lost">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'lost '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">Licenses</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.lost">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + startDate + '&endDate=' + to_date + '&productId=' + license_data.product_id +'&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(-license_data.licenses) }}">{{ valueWithPrefix(-license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(-totalSum.lost) }}" style="font-weight: bold;">{{ valueWithPrefix(-totalSum.lost) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b" ng-if="totalData.decrement">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'decrement '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">License Changes</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.decrement">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + from_date + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(license_data.licenses) }}">{{ valueWithPrefix(license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(totalSum.decrement) }}" style="font-weight: bold;">{{ valueWithPrefix(totalSum.decrement) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b" ng-if="totalData.upgrade">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'upgrade '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">Licenses</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.upgrade">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + startDate + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(license_data.licenses) }}">{{ valueWithPrefix(license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(totalSum.upgrade) }}" style="font-weight: bold;">{{ valueWithPrefix(totalSum.upgrade) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b" ng-if="totalData.downgrade">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ 'downgrade '+postUrlSfx }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <table class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Domain Name</th>
+                        <th>Order Id</th>
+                        <th class="numeric">Licenses</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData.downgrade">
+                    <tr ng-repeat="license_data in value">
+                        <td>{{key}}</td>
+                        <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + startDate + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                        <td>{{license_data.order_id}}</td>
+                        <td class="numeric {{ classByIntValue(license_data.licenses) }}">{{ valueWithPrefix(license_data.licenses) }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <tr style="background-color: #f0f8ff;">
+                        <td colspan="3" style="font-weight: bold;">Total</td>
+                        <td class="numeric {{ classByIntValue(totalSum.downgrade) }}" style="font-weight: bold;">{{ valueWithPrefix(totalSum.downgrade) }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

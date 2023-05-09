@@ -1,0 +1,151 @@
+
+<html lang="en">
+<head>
+
+    <link href="/public/assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <!--<link href="/public/assets/css/angular-datatables.css" rel="stylesheet" type="text/css" />-->
+
+    <!--<link rel="stylesheet"; href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">-->
+    <!--<link href="/public/assets/css/angularPrint.css" rel="stylesheet" type="text/css" />-->
+
+
+</head>
+
+<div class="row no-m-t no-m-b">
+    <div class="card stats-card" print-remove>
+        <div class="card-content totals-card">
+            <span class="card-title">Viwo Panel</span>
+        </div>
+        <div class="row col s3" print-remove>
+            <div class="col s12">
+                <a href="/vivo-panel-cron" target="_self">
+                    <div class="tooltip" ng-if=loading>
+                        <button class="btn btn-default" disabled>Sync With Google</button>
+                        <span class="tooltiptext">Please wait until the data is synchronized</span>
+                    </div>
+                    <div ng-if= "loading==false">
+                        <button class="btn btn-default">Sync With Google</button>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="row col s6" print-remove>
+            <div class="col s3">
+                <button class="btn btn-default" ng-csv="getArray()" csv-header="getHeader()"
+                        filename="{{ filename }}.csv"
+                        field-separator="{{separator}}" decimal-separator="{{decimalSeparator}}">Export
+                </button>
+            </div>
+            <div class="col s5">
+                <select ng-model="self.newPageSize" ng-change="self.changePageSize(self.newPageSize)">
+                    <option value="" disabled selected>Choose option for Print</option>
+                    <option value="50">Print 50 rows</option>
+                    <option value="100">Print 100 rows</option>
+                    <option value="200">Print 200 rows</option>
+                    <option value="500">Print 500 rows</option>
+                    <option value="1000">Print 1000 rows</option>
+                    <option value="{{ countRows }}">Print Entire Table</option>
+                </select>
+            </div>
+            <div class="col s2">
+                <button class="btn btn-default" print-landscape print-btn=""><i class="material-icons">print</i></button>
+                <!--<button print-landscape print-btn>Doesn't matter where you put me</button>-->
+            </div>
+        </div>
+        <div class="row" print-remove>
+            <div class="col s3 print-wpr">
+                <input type="text" class="form-control" placeholder="Search All Columns" name="searchTerm"
+                       ng-model="self.globalSearchTerm" ng-change="self.applyGlobalSearch()" required/>
+                       <i class="material-icons">search</i>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="card stats-card">
+        <div ng-if=loading>
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12" print-section>
+                <table id="table1" ng-table="self.tableParams" class="ngtable" export-csv="csv"
+                       ng-table-columns-binding="self.columns">
+                    <tr ng-repeat="user in $data">
+                        <td data-title="'ID'" filter="{ subsid: 'number'}" sortable="'subsid'">
+                            {{user.subsid}}
+                        </td>
+                        <td data-title="'Zoho Admin'" filter="{ zoho_admin: 'text'}" sortable="'zoho_admin'" print-hide="">
+                            {{user.zoho_admin.replace('.',' ')}}
+                        </td>
+                        <td data-title="'Customer Name'" filter="{ domain: 'text'}" sortable="'domain'">
+                            <a href="https://admin.google.com/{{user.domain}}/AdminHome#UserList:" target="_blank"> {{user.domain}}</a>
+                        </td>
+                        <td data-title="'Product Description'" filter="{ code: 'text'}" sortable="'code'" style="width: 66px; display: table-caption;" >
+                            <a href="https://admin.google.com/{{user.zoho_admin}}/partner/console/#CustomerList:search={{user.domain}}" target="_blank"> {{user.code}}</a>
+                        </td>
+                        <td data-title="'Creation Date'" filter="{ created_on: 'date'}" sortable="'created_on'" >
+                            {{user.created_on}}
+                        </td>
+                        <td data-title="'Plan Type'" filter="{ plan: 'text'}" sortable="'plan'" >
+                            {{user.plan}}
+                        </td>
+
+                        <td data-title="'Expires'" filter="self.expireDateFilterDef" sortable="'end_date'" id="expire1"
+                            ng-if="user.end_date != null">
+                            {{user.end_date.split("T")[0]}}
+                            <!--{{user.end_date| date: 'yyyy-MM-dd' : '+0000'}}-->
+                        </td>
+
+                        <td data-title="'Expires'" filter="self.expireDateFilterDef" sortable="'end_date'" id="expire2"
+                            ng-if="user.end_date == null">
+                            0000-00-00
+                        </td>
+                        <td data-title="'Purchased licenses'" filter="{ seats_licensed: 'number'}"
+                            sortable="'seats_licensed'">
+                            {{user.seats_licensed}}
+                        </td>
+
+                        <!--<td data-title="'Purchased licenses'" filter="self.ageFilterDef">-->
+                            <!--{{user.seats_licensed}}-->
+                        <!--</td>-->
+                        <td data-title="'Max No. Seats'" filter="{ seats_max: 'number'}" sortable="'seats_max'">
+                            {{user.seats_max}}
+                        </td>
+                        <td data-title="'In Trial?'" filter="{ is_trial: 'text'}" sortable="'is_trial'">
+                            {{user.is_trial}}
+                        </td>
+
+                        <td data-title="'Trial Expires'" filter="{ trial_end_date: 'date'}"
+                            sortable="'trial_end_date'">
+                            {{user.trial_end_date}}
+                        </td>
+                        <td data-title="'Renewal Type'" filter="{ renew_type: 'text'}" sortable="'renew_type'">
+                            {{user.renew_type.replace('_',' ').replace('_',' ').replace('_',' ').replace('_','').replace('_',' ')}}
+                        </td>
+
+                        <td data-title="'Last Updated'" print-remove>
+                            {{lastCronDate | date:"MM/dd/yyyy 'at' h:mma"}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+
+        $('#slide-out').toggle();
+        $('.mn-inner').toggleClass('hidden-fixed-sidebar');
+        $('.mn-content').toggleClass('fixed-sidebar-on-hidden');
+        $('.material-design-hamburger__layer').removeClass('material-design-hamburger__icon--from-arrow');
+        $('.material-design-hamburger__layer').addClass('material-design-hamburger__icon--to-arrow');
+        $('#slide-out').addClass('openOnHover');
+
+    });
+
+</script>

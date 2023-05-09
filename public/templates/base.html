@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ViWO Reseller Dashboard</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="UTF-8" />
+        <meta name="description" content="Responsive Admin Dashboard Template" />
+        <meta name="keywords" content="admin,dashboard" />
+        <meta name="author" content="ViWO Inc" />
+
+        <link type="text/css" rel="stylesheet" href="/public/assets/plugins/materialize/css/materialize.min.css" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="/public/assets/plugins/metrojs/MetroJs.min.css" rel="stylesheet" />
+        <link href="/public/assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet" />
+
+        <link href="/public/assets/css/alpha.css" rel="stylesheet" type="text/css" />
+        <link href="/public/assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <!--<link href="/public/assets/css/angular-datatables.css" rel="stylesheet" type="text/css" />-->
+
+        <!--<link rel="stylesheet"; href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+        <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+        <link href="/public/assets/css/angularPrint.css" rel="stylesheet" type="text/css" />
+
+
+    </head>
+    <body ng-app="viwoApp">
+        <div class="mn-content fixed-sidebar">
+            <header class="mn-header navbar-fixed">
+                <nav class="teal lighten-1">
+                    <div class="nav-wrapper row">
+
+                        <section class="material-design-hamburger navigation-toggle">
+                            <a href="javascript:void(0)" data-activates="slide-out" class="button-collapse show-on-large material-design-hamburger__icon">
+                                <span class="material-design-hamburger__layer"></span>
+                            </a>
+                        </section>
+                        <div class="header-title col s3 m3">
+                            <span class="chapter-title">ViWO Reseller Dashboard</span>
+                        </div>
+
+
+                        <!--<form ng-submit="submit()" ng-hide="hideDatePicker">-->
+                            <!--<div class="left col s2 hide-on-small-and-down" id="startId" style="margin-right: 10px;" ng-hide="hideStartDate">-->
+                                <!--<div class="input-field">-->
+                                    <!--<input type="date" ng-model="startDate"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="left col s2 hide-on-small-and-down" id="endId">-->
+                                <!--<div class="input-field">-->
+                                    <!--<input type="date" ng-model="endDate" ng-hide="hideStartDate"/>-->
+                                    <!--<input type="date" ng-model="asOfDate" ng-show="hideStartDate" ng-change="submit()"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="left col s2 hide-on-small-and-down" ng-hide="hideStartDate">-->
+                                <!--<button class="waves-effect waves-teal btn-flat white" type="submit" name="action">Apply</button>-->
+                            <!--</div>-->
+                        <!--</form>-->
+
+
+                        <ul class="right col s9 m3 nav-right-menu">
+                            <!--<li><a href="/log-out">Sign Out</a></li>-->
+                            <li><a href="/log-out" target="_self">Sign Out</a></li>
+                            <!--<li class="hide-on-small-and-down"><a href="javascript:void(0)" data-activates="dropdown1" class="dropdown-button dropdown-right show-on-large"><i class="material-icons">notifications_none</i><span class="badge">-</span></a></li>-->
+                            <!--<li class="hide-on-med-and-up"><a href="javascript:void(0)" class="search-toggle"><i class="material-icons">search</i></a></li>-->
+                        </ul>
+
+                        <ul id="dropdown1" class="dropdown-content notifications-dropdown">
+                            <li class="notificatoins-dropdown-container">
+                                <ul>
+                                    <li class="notification-drop-title">Today</li>
+                                    <li>
+                                        <a href="#!">
+                                            <div class="notification">
+                                                <div class="notification-icon circle red"><i class="material-icons">delete</i></div>
+                                                <div class="notification-text"><p><b>Amily Lee</b> deleted account</p><span>28 min ago</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="notification-drop-title">Yesterday</li>
+                                    <li>
+                                        <a href="#!">
+                                            <div class="notification">
+                                                <div class="notification-icon circle cyan"><i class="material-icons">person_add</i></div>
+                                                <div class="notification-text"><p><b>Tom Simpson</b> registered</p><span>2 hrs ago</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </header>
+
+            <aside id="slide-out" class="side-nav white fixed">
+                <div class="side-nav-wrapper">
+                    <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
+                        <li ng-class="{'active-tab': activeTab == 'dashboard'}" class="no-padding active"><a class="waves-effect waves-grey active" href="/dashboard"><i class="material-icons">tv</i>Dashboard</a></li>
+                        <li class="no-padding active">
+                            <a class="collapsible-header waves-effect waves-grey active" href="/total-licenses"><i class="material-icons">assignment</i>License Reports<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li ng-class="{'active-tab': activeTab == 'total-licenses'}"><a href="/total-licenses"><!--i class="material-icons">select_all</i-->Total Licenses</a></li>
+                                    <!--<li ng-class="{'active-tab': activeTab == 'by-salesperson'}"><a href="/by-salesperson">&lt;!&ndash;i class="material-icons">people</i&ndash;&gt;By Salesperson</a></li>-->
+                                    <li ng-class="{'active-tab': activeTab == 'subscription-changes'}"><a href="/subscription-changes"><!--i class="material-icons">create_new_folder</i-->Subscription Changes</a></li>
+                                    <li ng-class="{'active-tab': activeTab == 'license-changes'}"><a href="/license-changes"><!--i class="material-icons">create_new_folder</i-->License Changes</a></li>
+                                    <li ng-class="{'active-tab': activeTab == 'by-lead-source'}"><a href="/by-lead-source"><!--i class="material-icons">inbox</i-->By Lead Source</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--<li class="no-padding active">-->
+                            <!--<a class="collapsible-header waves-effect waves-grey active" href="/total-revenue"><i class="material-icons">assignment</i>Revenue Reports<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>-->
+                            <!--<div class="collapsible-body">-->
+                                <!--<ul>-->
+                                    <!--<li ng-class="{'active-tab': activeTab == 'total-revenue'}"><a href="/total-revenue">&lt;!&ndash;i class="material-icons">select_all</i&ndash;&gt;Total Revenue</a></li>-->
+                                    <!--<li ng-class="{'active-tab': activeTab == 'revenue-by-salesperson'}"><a href="/revenue-by-salesperson">&lt;!&ndash;i class="material-icons">people</i&ndash;&gt;By Salesperson</a></li>-->
+                                    <!--<li ng-class="{'active-tab': activeTab == 'revenue-by-lead-source'}"><a href="/revenue-by-lead-source">&lt;!&ndash;i class="material-icons">inbox</i&ndash;&gt;By Lead Source</a></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <li ng-class="{'active-tab': activeTab == 'viwo-panel'}" class="no-padding active"><a class="waves-effect waves-grey active" href="/viwo-panel"><i class="material-icons">work</i>Viwo Panel</a></li>
+                        
+                        <!--<li class="no-padding active">
+                            <a class="collapsible-header waves-effect waves-grey active" href="/viwo-panel"><i class="material-icons">work</i>viwo-reseller-panel<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li ng-class="{'active-tab': activeTab == 'viwo-panel'}"><a href="/viwo-panel">&lt;!&ndash;i class="material-icons">people</i&ndash;&gt;viwo-reseller-panel</a></li>
+                                </ul>
+                            </div>
+                        </li>-->
+                        
+
+                        <!--<li ng-class="{'active-tab': activeTab == 'viwo-panel'}" class="no-padding active"><a class="waves-effect waves-grey active" href="/viwo-panel"><i class="material-icons">people</i>Viwo Panel</a></li>
+                        <li ng-class="{'active-tab': activeTab == 'viwo-panel'}" class="no-padding active"><a class="waves-effect waves-grey active" href="/premier-viwo-panel"><i class="material-icons">people</i>Premier-Viwo Panel</a></li>
+-->
+
+                        <!--<li class="no-padding active"><a class="waves-effect waves-grey active" href="#trade-forecast"><i class="material-icons">desktop_windows</i>Trade Forecast</a></li>-->
+                        <!--<li class="no-padding active"><a class="waves-effect waves-grey active" href="#"><i class="material-icons">desktop_windows</i>Activity Yesterday</a></li>-->
+                        <!--<li ng-class="{'active-tab': activeTab == 'industry-breakdown'}" class="no-padding active"><a class="waves-effect waves-grey active" href="/industry-breakdown"><i class="material-icons">desktop_windows</i>Industry Breakdown</a></li>-->
+                    </ul>
+                    <div class="footer"><p class="copyright">ViWO inc &copy; <script>document.write(new Date().getFullYear())</script> </p></div>
+                </div>
+            </aside>
+
+            <!--'ng-view' is the container to put the content provided by the routing.-->
+            <main class="mn-inner inner-active-sidebar" id="mainApp" style="display: block">
+                <ng-view></ng-view>
+            </main>
+
+
+        </div>
+        <div class="left-sidebar-hover"></div>
+
+		<script src="/public/assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+		<script src="/public/assets/plugins/materialize/js/materialize.min.js"></script>
+		<script src="/public/assets/js/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>-->
+        <script src="/public/assets/js/ng-table.js"></script>
+        <script src="/public/assets/js/ng-csv.js"></script>
+        <script src="/public/assets/js/angularPrint.js"></script>
+
+		<script src="/public/assets/js/angular-route.min.js"></script>
+		<script src="/public/assets/plugins/chart.js/chart.min.js"></script>
+		<script src="/public/assets/js/alpha.js"></script>
+
+        <script src="/public/controllers/dashboardCtrl.js"></script>
+        <script src="/public/controllers/totalLicensesCtrl.js"></script>
+        <script src="/public/controllers/totalRevenueCtrl.js"></script>
+        <script src="/public/controllers/revenueBySalesPersonCtrl.js"></script>
+        <script src="/public/controllers/revenueByLeadSourceCtrl.js"></script>
+        <script src="/public/controllers/subscriptionChangesCtrl.js"></script>
+        <script src="/public/controllers/bySalesPersonCtrl.js"></script>
+        <script src="/public/controllers/licenseChangesCtrl.js"></script>
+        <script src="/public/controllers/byLeadSourceCtrl.js"></script>
+        <script src="/public/controllers/detailsCtrl.js"></script>
+        <script src="/public/controllers/detailsChangesCtrl.js"></script>
+        <script src="/public/controllers/domainCtrl.js"></script>
+        <script src="/public/controllers/invoicesCtrl.js"></script>
+        <script src="/public/controllers/vivoPanelCtrl.js"></script>
+        <script src="/public/core.js"></script>
+
+    </body>
+</html>

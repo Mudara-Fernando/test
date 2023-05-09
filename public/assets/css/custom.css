@@ -1,0 +1,340 @@
+/* Write your custom CSS here */
+
+.mn-inner.inner-active-sidebar{
+	position:relative;
+	overflow-y:scroll;
+}
+
+.middle-content{
+	position:absolute;
+	opacity:0;
+	transition:opacity 0.5s;
+}
+
+.middle-content.active{
+	opacity:1;
+}
+
+div.stats-counter{
+	float:none;
+	text-align:right;
+}
+
+div.stats-counter small{
+	width: 90px;
+	display: inline-block;
+	text-align: left;
+}
+
+#popup{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 1000;
+	height: 100vh;
+	padding: 40px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+th:nth-child(7) {
+	position: relative;
+	height: 150px;
+
+}
+
+tr:nth-child(2) th:nth-child(7) div:first-child input[type = "date"]{
+	height: 40px;
+	width: 130px !important;
+	top: 17px;
+	position: absolute;
+}
+
+tr:nth-child(2) th:nth-child(7) div:nth-child(2) input[type = "date"]{
+	width: 130px !important;
+}
+
+tr:nth-child(2) th:nth-child(5) div:first-child input[type = "date"]{
+	width: 130px !important;
+}
+
+tr:nth-child(2) th:nth-child(11) div:first-child input[type = "date"]{
+	width: 130px !important;
+}
+
+th.header.sortable {
+	height: 0px;
+}
+
+
+/*expire1 div:first-child{*/
+	/*height: 40px;*/
+	/*top: 17px;*/
+	/*position: absolute;*/
+/*}*/
+
+/*expire1 div:second-child{*/
+	/*height: 40px;*/
+	/*top: 60px;*/
+	/*position: absolute;*/
+/*}*/
+
+/*#th expire2 div:first-child{*/
+	/*height: 40px;*/
+	/*top: 17px;*/
+	/*position: absolute;*/
+/*}*/
+
+/*expire2 div:second-child {*/
+	/*height: 40px;*/
+	/*top: 60px;*/
+	/*position: absolute;*/
+/*}*/
+
+
+
+/*#composition-chart{
+	float:left;
+	margin-left:20%;
+	margin-top:-50px;
+	/*margin-right:-100px;* /
+	margin-bottom:-5px;
+	opacity:0.8;
+}*/
+
+#license-change{
+	height:400px;
+	width:100%;
+}
+
+#revenue-change{
+	height:300px;
+	width:100%;
+}
+
+div.col.chart{
+	    min-height:285px;
+}
+
+/*.card > .card-content > .card-title,*/
+.card .card-content .card-title,
+.card-panel > .card-content > .card-title,
+.card > .card-reveal > .card-title{
+	font-size:17px;
+/*	color:#84A8A8;*/
+    color: #9a9a9a;
+	text-transform: none;
+
+}
+
+
+.secondary-title{
+	font-size:16px;
+	font-weight:400;
+/*	color:#76C1BA;*/
+	/*color:rgba(0,0,0,0.5);*/
+    color: #9a9a9a;
+}
+
+.license-card-title{
+	text-align: right;
+}
+
+div.invoices-card div.secondary-title{
+	/*clear:both;*/
+	padding-top:40px;
+	margin-top:10px;
+
+	/*border-top:2px solid #F4F4F4;
+	box-shadow:0px -4px 8px -6px #26A69A;*/
+}
+
+div.invoices-card table.responsive-table{
+	margin-top:-36px;
+}
+div.invoices-card table.responsive-table td a{
+	margin-right:-40px;
+}
+
+#year-month, div.totals-card span.card-title{
+	font-size:24px !important;
+	line-height: 33px !important;
+/*	color: #75B3AC !important;*/
+    color: #9a9a9a;
+}
+div.totals-card span.secondary-title{
+	text-align: right;
+}
+
+#year-month{
+	float:right;
+}
+
+/*	---------------------	*/
+
+thead span#sorttable_sortfwdind, thead span#sorttable_sorted_reverse, thead span#sorttable_sortrevind{
+	/*float:left;*/
+	margin:0px -10px 0px 10px;
+}
+
+td{
+	font-weight:400;
+}
+
+td:first-child, th:first-child{
+	padding-left:0px;
+}
+
+td.numeric, th.numeric{
+	text-align:right;
+	/*padding-right:5px;*/
+}
+
+td div.ball{
+	/*height:20px;
+	width:20px;
+	margin:0px auto;
+	/*margin-left:5px;* /
+	border-radius:10px;*/
+	height:21px;
+	width:14px;
+	margin-left:20px ;
+	border-radius:7px;
+	text-align:left !important;
+}
+
+tr.highlight td, tbody tr:hover td{
+	background-color:#F6FBFD;
+	color:rgba(0,0,0,0.7);
+}
+
+tr[data-href]{
+	cursor:pointer;
+}
+
+tfoot tr{
+	border-top: 1px solid #C8C8C8;
+	/*border-bottom: 2px solid #D0D0D0;*/
+	border-bottom:3px solid rgba(200,200,200,0.3);
+}
+
+tfoot tr td{
+	font-weight:600;
+}
+
+/* ----------alignmen fixes-------------*/
+
+.custom-width{
+	width:150px !important;
+}
+
+.custom-width-inner{
+	width:50px !important;
+}
+
+/* ------------------------------------- */
+
+/*	---------------------	*/
+
+.material-icons.new{
+	/*color:#26a69a;*/
+	color:#26C6DA;
+	font-size:15pt;
+}
+
+.material-icons.text-red{
+	color:#F44336;
+}
+
+.material-icons.text-green{
+	color:#4CAF50;
+}
+
+/*	---------------------	*/
+
+ul.months{
+	margin:7px 0px;
+}
+
+ul.months li{
+	display:inline-block;
+	/*margin-right:24px;*/
+	margin-right:12px;
+	margin-bottom:8px;
+}
+
+.active-tab{
+	background-color: #d9d9d9;
+}
+
+.counter-plus{
+	color: #008000;
+}
+
+.counter-minus{
+	color: #c00000;
+}
+
+.gray-divide{
+	border-left: 1px solid #E0E0E0;
+}
+
+.gray-divide-cell{
+	border-left: 1px solid #E0E0E0;
+	border-bottom: 1px solid #E0E0E0;
+	border-top: 1px solid #E0E0E0;
+	border-right: 1px solid #E0E0E0;
+}
+.same-width td{
+	width:10%;
+}
+
+.gray-bottom-cell{
+	border-bottom: 1px solid #E0E0E0;
+}
+
+.net-licenses, .net-licenses>*{
+	font-weight: bold;
+}
+
+.date-error{
+	color: #c00000;
+	text-align: right;;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+	margin-top: 10px;
+}
+
+.ngtable{
+	display: block;
+	overflow-x: scroll;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: #E8E4E8;
+	color: #FF0E26;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+/* Hide annoying chart error when loading page */
+/*[id^="google-visualization-errors"], [id^="google-visualization-errors"] > span {*/
+	/*display: none;*/
+/*}*/

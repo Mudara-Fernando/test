@@ -1,0 +1,29 @@
+{
+  "name": "ViwoDashboard",
+  "version": "1.0.0",
+  "description": "ViWo Dashboard",
+  "main": "app.js",
+  "author": "Villvay",
+  "scripts": {
+    "start": "rm ./access.log && forever start ./forever.json",
+    "stopall": "forever stopall",
+    "stop": "forever stop viwo_app",
+    "list": "forever list",
+    "restart": "forever stop viwo_app && rm ./access.log && forever start ./forever.json"
+  },
+  "dependencies": {
+    "angular-chart.js": "^1.0.3",
+    "body-parser": "^1.19.0",
+    "client-sessions": "^0.7.0",
+    "express": "^4.17.1",
+    "forever": "^0.15.3",
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^13.0.0",
+    "log4js": "^3.0.6",
+    "moment-timezone": "^0.5.33",
+    "mysql": "^2.18.1",
+    "nodemailer": "^2.7.0",
+    "nohup": "^0.1.0",
+    "pm2": "^4.5.6"
+  }
+}

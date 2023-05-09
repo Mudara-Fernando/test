@@ -1,0 +1,36 @@
+
+<div class="row no-m-t no-m-b">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="secondary-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ title }}</span>
+                <span class="secondary-title" id="subtitle">  {{subtitle == 'null' ? 'Not Given' : subtitle}}</span>
+                <table class="responsive-table bordered">
+                    <thead>
+                        <tr>
+                            <th>Account</th>
+                            <th>Domain Name</th>
+                            <th>Product</th>
+                            <th class="numeric">License Changes</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="(key, value) in totalData">
+                        <tr ng-repeat="license_data in value">
+                            <td>{{key}}</td>
+                            <td><a href="{{'/domain/'+license_data.cus_id+'/'+license_data.domain + '?startDate=' + from_date + '&endDate=' + to_date + '&productId=' + license_data.product_id + '&salesPerson=' + sales_person}}">{{license_data.domain}}</a></td>
+                            <td>{{license_data.product}}</td>
+                            <td class="numeric">{{license_data.licenses}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr style="background-color: #f0f8ff;">
+                            <td colspan="3" style="font-weight: bold;">Total</td>
+                            <td class="numeric" style="font-weight: bold;">{{totalSum}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,180 @@
+
+<div class="row no-m-t no-m-b">
+	<div class="col s12 m12 l6">
+		<div class="card stats-card">
+			<div class="card-content totals-card">
+				<span class="card-title">{{ title }}</span>
+
+				<div ng-show="loading" class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-teal lighten-1">
+						<div class="circle-clipper left">
+							<div class="circle"></div>
+						</div>
+						<div class="gap-patch">
+							<div class="circle"></div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle"></div>
+						</div>
+					</div>
+				</div>
+
+				<div ng-hide="loading" class="row no-m-t no-m-b">
+					<div class="col s12 m12 l5">
+						<span class="secondary-title">Total Revenue</span>
+						<div class="stats-counter"><span class="counter">{{ totRevenue | currency : "$" : 2 }}</span></div>
+					</div>
+					<div class="col s12 m12 l5">
+						<span class="secondary-title">Total Invoices</span>
+						<div class="stats-counter"><span class="counter">{{ totInvoices }}</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l6">
+		<div class="card stats-card">
+			<div class="card-content totals-card">
+				<!--<span class="card-title" ng-bind-html="date_range"></span>-->
+				<form ng-submit="submit()">
+					<div class="row" style="margin-bottom: 0px">
+						<div id="startId" style="display: inline; float:left">
+							<div class="date-picker">
+								<span class="counter">Start Date:</span>
+								<input type="date" max="{{formatedCurrentDate}}" ng-model="startDate" ng-change="validateDate()"/>
+							</div>
+						</div>
+						<div id="endId" style="display: inline; float:right">
+							<div class="date-picker">
+								<span class="counter">End Date:</span>
+								<input type="date" max="{{formatedCurrentDate}}" ng-model="endDate" ng-change="validateDate()"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" style="margin-bottom: 0px">
+						<button class="btn waves-effect waves-light right" type="submit" name="action" ng-show="errormsg == ''">
+							Apply<!--i class="material-icons right">send</i-->
+						</button>
+						<div class="date-error" ng-hide="errormsg == ''">{{ errormsg }}</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="row no-m-t no-m-b">-->
+		<!--<div class="col s12 m12 16">-->
+			<!--<div class="card">-->
+				<!--<div class="card-content">-->
+					<!--<div class="row">-->
+						<!--<div ng-show="loading" class="preloader-wrapper big active">-->
+							<!--<div class="spinner-layer spinner-teal lighten-1">-->
+								<!--<div class="circle-clipper left">-->
+									<!--<div class="circle"></div>-->
+								<!--</div>-->
+								<!--<div class="gap-patch">-->
+									<!--<div class="circle"></div>-->
+								<!--</div>-->
+								<!--<div class="circle-clipper right">-->
+									<!--<div class="circle"></div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+
+						<!--<table ng-hide="loading" class="responsive-table bordered col l8">-->
+							<!--<thead>-->
+								<!--<tr>-->
+									<!--<th>Salesperson</th>-->
+									<!--<th class="numeric">Invoices</th>-->
+									<!--<th class="numeric">Total Revenue</th>-->
+									<!--<th class="numeric">Paid</th>-->
+									<!--<th class="numeric">Balance Due</th>-->
+								<!--</tr>-->
+							<!--</thead>-->
+							<!--<tbody>-->
+								<!--<tr ng-repeat="data in totalData">-->
+									<!--<td><a href="{{data.anchor}}">{{data.fullname}}</a></td>-->
+									<!--<td class="numeric">{{data.invoices}}</td>-->
+									<!--<td class="numeric">{{data.revenue}}</td>-->
+									<!--<td class="numeric">{{data.paid_amount}}</td>-->
+									<!--<td class="numeric">{{data.balance}}</td>-->
+								<!--</tr>-->
+								<!--<tr>-->
+									<!--<th>Total</th>-->
+									<!--<td class="numeric"><b>{{ totalData.total.totInv }}</b></td>-->
+									<!--<td class="numeric"><b>{{ totalData.total.totRev }}</b></td>-->
+									<!--<td class="numeric"><b>{{ totalData.total.totPaid }}</b></td>-->
+									<!--<td class="numeric"><b>{{ totalData.total.totBal }}</b></td>-->
+								<!--</tr>-->
+							<!--</tbody>-->
+						<!--</table>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
+
+</div>
+
+<div class="row no-m-t no-m-b">
+	<div class="col s12 m12 l6">
+		<div class="card visitors-card">
+			<div class="card-content">
+				<span class="card-title">Total Revenue by Sales Person</span>
+				<canvas id="canvasRev" height="500" width="470" style="display: block"></canvas>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l6">
+		<div class="card visitors-card">
+			<div class="card-content">
+				<div class="row">
+					<div ng-show="loading" class="preloader-wrapper big active">
+						<div class="spinner-layer spinner-teal lighten-1">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+					</div>
+
+					<table ng-hide="loading" class="responsive-table bordered">
+						<thead>
+						<tr>
+							<th>Salesperson</th>
+							<th class="numeric">Invoices</th>
+							<th class="numeric">Total Revenue</th>
+							<th class="numeric">Paid</th>
+							<th class="numeric">Balance Due</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="data in totalData">
+							<td><a href="{{data.anchor}}">{{data.fullname}}</a></td>
+							<td class="numeric">{{data.invoices}}</td>
+							<td class="numeric">{{data.revenue}}</td>
+							<td class="numeric">{{data.paid_amount}}</td>
+							<td class="numeric">{{data.balance}}</td>
+						</tr>
+						<tr>
+							<th>Total</th>
+							<td class="numeric"><b>{{ totalData.total.totInv }}</b></td>
+							<td class="numeric"><b>{{ totalData.total.totRev }}</b></td>
+							<td class="numeric"><b>{{ totalData.total.totPaid }}</b></td>
+							<td class="numeric"><b>{{ totalData.total.totBal }}</b></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

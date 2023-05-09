@@ -1,0 +1,112 @@
+
+<div class="row no-m-t no-m-b">
+	<div class="col s12 m12 l6">
+		<div class="card stats-card">
+			<div class="card-content totals-card">
+				<span class="card-title">{{ title }}</span>
+				<div class="row no-m-t no-m-b">
+					<div class="col s12 m12 l4">
+						<span class="secondary-title license-card-title">&nbsp;</span>
+						<!--<div class="stats-counter"><small>ViWO Original</small></div>-->
+						<!--<div class="stats-counter"><small>ViWO Premium</small></div>-->
+						<hr>
+						<div class="stats-counter"><small>Total</small></div>
+					</div>
+					<div class="col s12 m12 l4">
+						<span class="secondary-title license-card-title">Subscriptions</span>
+						<!--<div class="stats-counter"><span class="counter">{{ originalSubs | number }}</span></div>-->
+						<!--<div class="stats-counter"><span class="counter">{{ premiumSubs | number }}</span></div>-->
+						<hr>
+						<div class="stats-counter"><span class="counter">{{ originalSubs + premiumSubs | number }}</span></div>
+					</div>
+					<div class="col s12 m12 l4">
+						<span class="secondary-title license-card-title">License</span>
+						<!--<div class="stats-counter"><span class="counter">{{ originalLicenses | number }}</span></div>-->
+						<!--<div class="stats-counter"><span class="counter">{{ premiumLicenses | number }}</span></div>-->
+						<hr>
+						<div class="stats-counter"><span class="counter">{{ premiumLicenses + originalLicenses | number }}</span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l6">
+		<div class="card stats-card">
+			<div class="card-content totals-card">
+				<!--<span class="card-title" ng-bind-html="date_range"></span>-->
+				<form ng-submit="submit()">
+					<div class="row" style="margin-bottom: 0px">
+						<div id="startId" style="display: inline; float:left">
+							<div class="date-picker">
+								<span class="counter">Start Date:</span>
+								<input type="date" max="{{formatedCurrentDate}}" ng-model="startDate" ng-change="validateDate()"/>
+							</div>
+						</div>
+						<div id="endId" style="display: inline; float:right">
+							<div class="date-picker">
+								<span class="counter">End Date:</span>
+								<input type="date" max="{{formatedCurrentDate}}" ng-model="endDate" ng-change="validateDate()"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" style="margin-bottom: 0px">
+						<button class="btn waves-effect waves-light right" type="submit" name="action" ng-show="errormsg == ''">
+							Apply<!--i class="material-icons right">send</i-->
+						</button>
+						<div class="date-error" ng-hide="errormsg == ''">{{ errormsg }}</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+    <div id="page-loading" ng-show = showloadingicon>
+        <img style="display:block; margin-left: 50%" src="/public/assets/images/200w.webp">
+    </div>
+
+    <div class="row no-m-t no-m-b">
+		<div class="col s12 m12 l12">
+			<div class="card">
+				<div class="card-content">
+					<div class="row">
+						<table class="responsive-table bordered col l12">
+							<thead>
+								<!--<tr>-->
+									<!--<th></th>-->
+									<!--<th class="numeric" colspan="2">ViWO Original</th>-->
+									<!--<th class="numeric" colspan="2">ViWO Premium</th>-->
+								<!--</tr>-->
+								<tr>
+									<th>Lead Source</th>
+									<th class="numeric">Subscriptions change</th>
+									<th class="numeric">Licenses change</th>
+									<!--<th class="numeric">Subscriptions change</th>-->
+									<!--<th class="numeric">Licenses change</th>-->
+								</tr>
+							</thead>
+							<tbody ng-repeat="data in totalData">
+								<tr ng-repeat="lead in data">
+									<td><a href="{{lead.anchor}}">{{lead.description}}</a></td>
+									<td class="numeric">{{lead.subscriptions1 + lead.subscriptions2}}</td>
+									<td class="numeric">{{lead.licenses1 + lead.licenses2}}</td>
+									<!--<td class="numeric">{{lead.subscriptions2}}</td>-->
+									<!--<td class="numeric">{{lead.licenses2}}</td>-->
+								</tr>
+								<tr>
+									<th>Total</th>
+									<td class="numeric"><b>{{ totalData.total.totSubs1 + totalData.total.totSubs2}}</b></td>
+									<td class="numeric"><b>{{ totalData.total.totLicns1 +  totalData.total.totLicns2}}</b></td>
+									<!--<td class="numeric"><b>{{ totalData.total.totSubs2 }}</b></td>-->
+									<!--<td class="numeric"><b>{{ totalData.total.totLicns2 }}</b></td>-->
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,77 @@
+
+<div class="row no-m-t no-m-b">
+    <div class="col s12 m12 l7">
+        <div class="card visitors-card">
+            <div class="card-content">
+                <span class="card-title" ng-bind-html="monthTitle"></span>
+                <canvas id="canvas" height="420" width="560" style="display: block"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l5">
+        <div class="card server-card">
+            <div class="card-content">
+                <span class="card-title">Total License Count</span>
+                <div class="row no-m-t no-m-b">
+                    <div class="col s12 m12 l4">
+                        <span class="secondary-title license-card-title">&nbsp;</span>
+                        <div class="stats-counter"><small>ViWO Original</small></div>
+                        <div class="stats-counter"><small>ViWO Premium</small></div>
+                        <hr>
+                        <div class="stats-counter"><small>Total</small></div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <span class="secondary-title license-card-title">Subscriptions</span>
+                        <div class="stats-counter"><span class="counter">{{ originalSubs | number }}</span></div>
+                        <div class="stats-counter"><span class="counter">{{ premiumSubs | number }}</span></div>
+                        <hr>
+                        <div class="stats-counter"><span class="counter">{{ originalSubs + premiumSubs | number }}</span></div>
+                    </div>
+                    <div class="col s12 m12 l4">
+                        <span class="secondary-title license-card-title">License</span>
+                        <div class="stats-counter"><span class="counter">{{ originalLicenses | number }}</span></div>
+                        <div class="stats-counter"><span class="counter">{{ premiumLicenses | number }}</span></div>
+                        <hr>
+                        <div class="stats-counter"><span class="counter">{{ premiumLicenses + originalLicenses | number }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-m-t no-m-b">
+    <div class="col s12 m12 l6">
+        <div class="card visitors-card">
+            <div class="card-content">
+                <span class="card-title">Total Revenue per month</span>
+                <canvas id="canvasRev" height="500" width="470" style="display: block"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m12 l6">
+        <div class="card visitors-card">
+            <div class="card-content">
+                <table id="rev-tbody" class="responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th class="numeric">Total Revenue</th>
+                        <th class="numeric">Paid</th>
+                        <th class="numeric">Balance Due</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="month_data in revenueDetails">
+                        <td><a href="{{month_data.anchor}}">{{ month_data.month }}</a></td>
+                        <td class="numeric">{{ month_data.revenue | currency : "$" : 2 }}</td>
+                        <td class="numeric">{{ month_data.paid_amount | currency : "$" : 2 }}</td>
+                        <td class="numeric">{{ month_data.balance | currency : "$" : 2 }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

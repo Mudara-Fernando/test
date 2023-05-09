@@ -1,0 +1,141 @@
+
+<div class="row no-m-t no-m-b">
+    <div class="col s12 m12 l7">
+        <div class="card stats-card">
+            <div class="card-content totals-card">
+                <span class="card-title">{{ title }}</span>
+                <div class="row no-m-t no-m-b">
+                    <!--<div class="col s12 m12 l3">-->
+                        <!--<span class="secondary-title license-card-title">&nbsp;</span>-->
+                        <!--<div class="stats-counter"><small>ViWO Original</small></div>-->
+                        <!--<div class="stats-counter"><small>ViWO Premium</small></div>-->
+                        <!--<hr>-->
+                        <!--<div class="stats-counter"><small>Total</small></div>-->
+                    <!--</div>-->
+                    <div class="col s12 m12 l3">
+                        <span class="secondary-title license-card-title">New</span>
+                        <hr>
+                        <!--<div class="stats-counter"><span class="counter {{ classByIntValue(total.original_new ) }}">{{ valueWithPrefix(total.original_new ) }}</span></div>-->
+                        <div class="stats-counter"><span class="counter {{ classByIntValue(total.new) }}">{{ valueWithPrefix(total.new) }}</span></div>
+                        <!--<hr>-->
+                        <!--<div class="stats-counter"><span class="counter {{ classByIntValue(total.premium_new + total.original_new) }}">{{ valueWithPrefix(total.original_new + total.premium_new) }}</span></div>-->
+                    </div>
+                    <div class="col s12 m12 l3">
+                        <span class="secondary-title license-card-title">Lost</span>
+                        <hr>
+                        <!--<div class="stats-counter"><span class="counter {{ classByIntValue(-total.original_lost) }}">{{ valueWithPrefix(-total.original_lost) }}</span></div>-->
+                        <div class="stats-counter"><span class="counter {{ classByIntValue(-total.lost) }}">{{ valueWithPrefix(-total.lost) }}</span></div>
+                        <!--<hr>-->
+                        <!--<div class="stats-counter"><span class="counter {{ classByIntValue(-total.original_lost - total.premium_lost) }}">{{ valueWithPrefix(-total.original_lost - total.premium_lost) }}</span></div>-->
+                    </div>
+                    <div class="col s12 m12 l3 net-licenses">
+                        <span class="secondary-title license-card-title">Net</span>
+                        <hr>
+                        <!--<div class="stats-counter"><span class="counter {{ classByIntValue(total.original_net) }}">{{ valueWithPrefix(total.original_net) }}</span></div>-->
+                        <div class="stats-counter"><span class="counter {{ classByIntValue(total.net) }}">{{ valueWithPrefix(total.net) }}</span></div>
+                        <!--<hr>-->
+                        <!--<div class="stats-counter">-->
+							<!--<span class="counter {{ classByIntValue(total.net) }}">-->
+								<!--{{ valueWithPrefix(total.net) }}-->
+							<!--</span>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m12 l5">
+        <div class="card stats-card">
+            <div class="card-content totals-card">
+                <!--<span class="card-title" ng-bind-html="date_range"></span>-->
+                <form ng-submit="submit()">
+                    <div class="row" style="margin-bottom: 0px">
+                        <div id="startId" style="display: inline; float:left">
+                            <div class="date-picker">
+                                <span class="counter">Start Date:</span>
+                                <input type="date" max="{{formatedCurrentDate}}" ng-model="startDate" ng-change="validateDate()"/>
+                            </div>
+                        </div>
+                        <div id="endId" style="display: inline; float:right">
+                            <div class="date-picker">
+                                <span class="counter">End Date:</span>
+                                <input type="date" max="{{formatedCurrentDate}}" ng-model="endDate" ng-change="validateDate()"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 0px">
+                        <button class="btn waves-effect waves-light right" type="submit" name="action" ng-show="errormsg == ''">
+                            Apply<!--i class="material-icons right">send</i-->
+                        </button>
+                        <div class="date-error" ng-hide="errormsg == ''">{{ errormsg }}</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="page-loading" ng-show = showloadingicon>
+    <img style="display:block; margin:0 auto;" src="/public/assets/images/200w.webp">
+</div>
+
+
+<div class="row no-m-t no-m-b" ng-repeat="(key, plans) in totalData" ng-if="!angular.equals(plans, {})">
+    <div class="col s12 m12 l10" class style="width: 100%">
+        <div class="card invoices-card">
+            <div class="card-content">
+                <div class="row">
+                    <table class="responsive-table bordered col l12">
+                        <div class="secondary-title"></div>
+                        <thead>
+                        <tr>
+                            <th class="secondary-title">{{ key.split('_').join(' ') }}</th>
+                        </tr>
+                        <tr>
+                            <th class="numeric gray-divide-cell" style="text-align: center; ..." colspan="1.5">Product</th>
+
+                            <th class="numeric gray-divide-cell"  style="text-align: center; ..." colspan="1.5">New</th>
+                            <th class="numeric gray-divide-cell" style="text-align: center; ..." colspan="1.5">Reactivations</th>
+                            <th class="numeric gray-divide-cell" style="text-align: center; ..." colspan="1.5">Upgrades</th>
+                            <th class="numeric gray-divide-cell" style="text-align: center; ..." colspan="1.5">Downgrades</th>
+                            <th class="numeric gray-divide-cell" style="text-align: center; ..." colspan="1.5">Lost</th>
+                            <th class="numeric gray-divide-cell" style="text-align: center; ..." colspan="1.5">Net</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="gray-divide-cell same-width" ng-repeat="(prod_key, product) in plans.services">
+                            <td><a href="{{ product.anchor }}">{{ product.skuName }}</a></td>
+
+                            <td class="numeric gray-divide {{ classByIntValue(product.new_subscription) }}">{{ valueWithPrefix(product.new_subscription) }}</td>
+                            <td class="numeric gray-divide {{ classByIntValue(product.cancel_to_active_subscription) }}">{{ valueWithPrefix(product.cancel_to_active_subscription) }}</td>
+                            <td class="numeric gray-divide {{ classByIntValue(product.upgrade_subscription) }}">{{ valueWithPrefix(product.upgrade_subscription) }}</td>
+                            <td class="numeric gray-divide {{ classByIntValue(-product.downgrade_subscription) }}">{{ valueWithPrefix(-product.downgrade_subscription) }}</td>
+                            <td class="numeric gray-divide {{ classByIntValue(-product.active_to_cancel_subscription) }}">{{ valueWithPrefix(-product.active_to_cancel_subscription) }}</td>
+                            <td class="numeric gray-divide-cell net-licenses {{ classByIntValue(product.new_subscription -
+                                                                            product.active_to_cancel_subscription
+                                                                            ) }}">{{ valueWithPrefix(product.new_subscription -
+                                                                            product.active_to_cancel_subscription
+                                                                            ) }}</td>
+                        </tr>
+                        <tr>
+                            <th class="gray-divide-cell same-width">Total</th>
+
+                            <td class="numeric gray-divide-cell {{ classByIntValue(plans.new_subscription) }}"><b>{{ valueWithPrefix(plans.new_subscription) }}</b></td>
+                            <td class="numeric gray-divide-cell {{ classByIntValue(plans.cancel_to_active_subscription) }}"><b>{{ valueWithPrefix(plans.cancel_to_active_subscription) }}</b></td>
+                            <td class="numeric gray-divide-cell {{ classByIntValue(plans.upgrade_subscription) }}">{{ valueWithPrefix(plans.upgrade_subscription) }}</td>
+                            <td class="numeric gray-divide-cell {{ classByIntValue(-plans.downgrade_subscription) }}"><b>{{ valueWithPrefix(-plans.downgrade_subscription) }}</b></td>
+                            <td class="numeric gray-divide-cell {{ classByIntValue(-plans.active_to_cancel_subscription) }}"><b>{{ valueWithPrefix(-plans.active_to_cancel_subscription) }}</b></td>
+                            <td class="numeric gray-divide-cell {{ classByIntValue(plans.new_subscription -
+                                plans.active_to_cancel_subscription) }}"><b>{{ valueWithPrefix(plans.new_subscription -
+                                plans.active_to_cancel_subscription) }}</b></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

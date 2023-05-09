@@ -1,0 +1,57 @@
+
+<div class="row no-m-t no-m-b">
+    <div class="col s12 m12 l12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title" id="year-month" ng-bind-html="date_range"></span>
+                <span class="card-title" id="title">{{ title }}</span>
+                <span class="secondary-title" id="subtitle">{{ subtitle }}</span>
+
+                <div ng-show="loading" class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-teal lighten-1">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <table ng-hide="loading" class="responsive-table bordered">
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Contact Name</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th class="numeric">Total</th>
+                            <th class="numeric">Paid</th>
+                            <th class="numeric">Balance Due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="invoice_data in totalData">
+                            <td>{{invoice_data.invoice_number}}</td>
+                            <td>{{invoice_data.contact_name}}</td>
+                            <td>{{invoice_data.date | date}}</td>
+                            <td>{{invoice_data.status}}</td>
+                            <td class="numeric">{{invoice_data.total | currency}}</td>
+                            <td class="numeric">{{invoice_data.paid | currency}}</td>
+                            <td class="numeric">{{invoice_data.balance | currency}}</td>
+                        </tr>
+                        <tr style="background-color: #f0f8ff;">
+                            <td style="font-weight: bold;" colspan="4">Total</td>
+                            <td style="font-weight: bold;" class="numeric">{{totalSums.total | currency}}</td>
+                            <td style="font-weight: bold;" class="numeric">{{totalSums.paid | currency}}</td>
+                            <td style="font-weight: bold;" class="numeric">{{totalSums.balance | currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

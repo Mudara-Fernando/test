@@ -1,0 +1,89 @@
+
+<div class="row no-m-t no-m-b">
+	<div class="col s12 m12 l6">
+		<div class="card invoices-card">
+			<div class="card-content">
+				<span class="card-title" id="domain-name">{{totalData.name}}</span>
+				<br/>
+				<table class="responsive-table bordered">
+					<tbody>
+						<tr>
+							<th>Domain</th>
+							<td>{{totalData.domain}}</td>
+						</tr>
+						<tr>
+							<th>Industry</th>
+							<td>{{totalData.industry}}</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>{{totalData.email}}</td>
+						</tr>
+						<tr>
+							<th>Phone</th>
+							<td>{{totalData.phone}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card invoices-card">
+			<div class="card-content">
+				<span class="card-title">{{totalData.name}}</span>
+				<div class="row">
+					<div class="secondary-title">{{totalData.plan}}</div>
+					<br/><br/>
+					<table class="responsive-table bordered">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+								<th class="numeric">Status</th>
+								<th class="numeric sorttable_numeric">Total licenses to date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="sub in totalData.subscriptions">
+								<td>{{sub.event_time | date}}</td>
+								<td>{{sub.start_date | date}}</td>
+								<td>{{sub.end_date | date}}</td>
+								<td class="numeric">{{sub.new_status}}</td>
+								<td class="numeric">{{sub.seats}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col s12 m12 l6">
+		<div class="card invoices-card">
+			<div class="card-content">
+				<span class="card-title">Invoices</span>
+				<div class="row">
+					<br/><br/>
+					<table class="responsive-table bordered">
+						<thead>
+							<tr>
+								<th>Invoice #</th>
+								<th>Date</th>
+								<th>Status</th>
+								<th class="numeric">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="inv in totalData.invoices">
+								<td>{{inv.invoice_number}}</td>
+								<td>{{inv.date | date: 'MMM d, y' : '-0800'}}</td>
+								<td>{{inv.status}}</td>
+								<td class="numeric">{{inv.total | currency}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+{
+	"database": {
+		"host": "localhost",
+		"user": "root",
+		"database": "viwoinc_pnlnw",
+		"password": "",
+		"connectionLimit":100
+	},
+	"databaseConnection": {
+		"retryMinTimeout": 2000,
+		"retryMaxTimeout": 60000
+	},
+	"session": {
+		"cookieName": "session",
+		"secret": "KCl-is-aLs0-a-5a1t",
+		"duration": 1800000,
+		"activeDuration": 300000
+	},
+	"google": {
+		"clientId": "316117665207-a67gg5mdhhbcg2fspj1fr7qghap73v3p.apps.googleusercontent.com",
+		"clientSecret": "jLThHAFjvETVvB1gp6-mpOdh",
+		"scopes": "https://www.googleapis.com/auth/userinfo.email",
+		"redirectUri": "http://newviwo.villvay.com:3000/sign-in"
+	},
+	"zoho": {
+		"authtoken": "cdb7c94a750c0057c1efeef34e9bb22a"
+	},
+	"zoho_books": {
+		"auth_token": "f3de35b9d01b8e9a53281c097d00e897",
+		"organization_id": "57907064"
+	},
+	"zoho_subscriptions": {
+		"auth_token": "d8ed1d2cb01657605fcf0c3f6508b9a6",
+		"organization_id": "57907064"
+	},
+        "allowed_auth_emails" : ["dennis.villvay@gmail.com", "wanoj.villvay@gmail.com", "ldenhaan@upcurvecloud.com", "licensing@upcurvecloud.com", "dhazime@upcurvecloud.com", "rnacify@upcurvecloud.com", "rumarji@upcurvecloud.com", "lgoganian@upcurvecloud.com", "rprymmer@upcurvecloud.com", "rmenard@propelmarketing.com", "bscanlon@propelmarketing.com"],
+	"listenPort": 3000,
+	"ignorePlans": "'x'",
+	"ignoreServices":[1,6,7,8,9,10,11,12,13,14,15,16,18,19,20,23,24,26,27,28,29,17,25,31,39,40],
+	"runCron":true
+}
